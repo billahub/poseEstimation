@@ -56,13 +56,16 @@ btn_play_pause.addEventListener("click", function(){
     }
 })
 
-function dataURLtoBlob(dataurl) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--){
-        u8arr[n] = bstr.charCodeAt(n);
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
     }
-    return new Blob([u8arr], {type:mime});
+    return new Blob([ab], {type: mimeString});
 }
 
 function getImageFromVideo(){
@@ -75,7 +78,7 @@ function getImageFromVideo(){
 
 function sendPost(toggle){
     var formData = new FormData();
-    formData.append("image", new Blob([getImageFromVideo()], {contentType: "image/png"}), "image1.png");
+    formData.append("image", dataURItoBlob(getImageFromVideo()), "image.png");
     $.ajax({
         type: 'POST',
         data: formData,
