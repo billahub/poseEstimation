@@ -5,6 +5,7 @@ var btn_play_pause = document.getElementById("btn-play-pause");
 var localVideo = document.getElementById("localVideo");
 var localCanvas = document.getElementById("localCanvas");
 var tempCanvas = document.getElementById("tempCanvas");
+var result = document.getElementById("result");
 
 Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
     get: function(){
@@ -82,11 +83,11 @@ function sendPost(toggle){
     $.ajax({
         type: 'POST',
         data: formData,
-        url: 'http://localhost:5000/getpose',
+        url: 'http://localhost:5000',
         processData: false,
         contentType: false,
         success: function(data){
-            console.log("Data : ",data);
+            result.innerHTML = ""+data;
         }
      })
 }

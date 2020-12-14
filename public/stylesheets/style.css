@@ -91,6 +91,15 @@ video{
   overflow: hidden;
 }
 
+
+.result{
+  position: fixed;
+  bottom: 10px;
+  left: 50px;
+  margin: 0;
+  padding: 0;
+}
+
 #tempCanvas{
   position: fixed;
   top: 0px;
