@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        title myMentor
+        meta(charset="utf-8", description="Web communication through webRTC")
+        link(rel="stylesheet", href="stylesheets/bootstrap.min.css")
+        link(rel="stylesheet", href="stylesheets/all.min.css")
+        link(rel="stylesheet", href="stylesheets/style.css")
+    body
+        .videoHead
+            h2(class="text-white") 
+                span(class="badge badge-success") myMentor
+        .wrapper
+            video#localVideo(src="videos/yoga-pose-short.mp4" type="video/mp4" loop="loop")
+        canvas#localCanvas
+        canvas#tempCanvas
+        .controls
+            button(class="btn btn-lg btn-dark", id="btn-play-pause", title="play-pause") 
+                i(class="fas fa-play fa-lg")
+        script(src="javascripts/jquery.min.js")
+        script(src="javascripts/index.js")

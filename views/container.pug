@@ -1,0 +1,42 @@
+extends login-layout.pug
+
+mixin addInput(fields)
+    each field in fields
+        div(class="input-group form-group")
+            div(class="input-group-prepend")
+                span(class="input-group-text")
+                    i(class=field["icon"])
+            input(type=field['type'], placeholder=field['placeholder'], class="form-control", id=field['id'], name=field['id'], autocomplete="off", value=field['data'], required)
+
+block container
+    .container
+        div(class="d-flex justify-content-center h-100")
+            .card
+                div(class="d-flex justify-content-center card-header-parent")
+                    .card-header
+                        h3 Remote Assistance
+                .card-body
+                    h4 Sign in
+                    h5 as
+                    form(action="/remote/login", id="indexForm", method="POST")
+                        .loginas
+                            div(class="btn-group btn-group-toggle", data-toggle="buttons")
+                                label(class="btn btn-outline-info")
+                                    input(type="radio", name="loginas", value="expert", checked)
+                                    |Expert
+                        - var fields = [{ "type": "text", "placeholder": "Email Address", "icon": "fas fa-user", "id": "user", "data": "technovation@wipro.com"}, {"type": "password", "placeholder": "Password", "icon": "fas fa-key", "id": "key", "data": "wipro@123"}]
+                        +addInput(fields)
+                        div(class="d-flex justify-content-end")
+                            input(type="submit", name="login", value="Submit", class="btn btn-info") 
+                        div(class="d-flex justify-content-center", style="margin-top: 5px; height: 20px;")
+                            span#caution(style="color: rgba(255, 94, 0, 1);") #{error} 
+                .card-footer
+                    div(class="d-flex justify-content-center links")
+                        |Don't have an account? &nbsp<a href="/remote/signup"> Sign Up</a>
+                    div(class="d-flex justify-content-center")
+                        |<a href="#">Forgot your password?</a>
+
+block scripts
+    script(src="javascripts/index.js")
+
+    

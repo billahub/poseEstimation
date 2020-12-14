@@ -1,0 +1,68 @@
+extends login-layout.pug
+
+mixin addInputBtn(fields)
+    each field in fields
+        div(class="input-group form-group")
+            div(class="input-group-prepend")
+                span(class="input-group-text")
+                    i(class=field["icon"])
+            if(field['id'] == "user")
+                input(type=field['type'], placeholder=field['placeholder'], class="form-control", pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+[.]{1}[a-z]{2,}$", title="Please enter valid email address", id=field['id'], name=field['id'], autocomplete="off", required)
+            else
+                input(type=field['type'], placeholder=field['placeholder'], class="form-control", id=field['id'], name=field['id'], autocomplete="off", required)
+            //input(type="button", value="Get OTP", id="btn-otp", class="btn btn-outline-info", style="font-weight: 900; margin-left: 10px;")
+                span(class="spinner-border spinner-border-sm",role="status", aria-hidden="true")
+            button(class="btn btn-outline-info",id="btn-otp", type="button", style="margin-left: 5px; font-weight: 900;", value="Get OTP")
+                //span(class="spinner-border spinner-border-sm",role="status", aria-hidden="true")
+                |&nbspGet OTP
+                
+                
+
+mixin addInput(fields)
+    each field in fields
+        div(class="input-group form-group")
+            div(class="input-group-prepend")
+                span(class="input-group-text")
+                    i(class=field["icon"])
+            if(field['id'] == "otp")
+                input(type=field['type'], placeholder=field['placeholder'], class="form-control", pattern="^[0-9]{6}$" title="Please enter 6-digit code" id=field['id'], name=field['id'], autocomplete="off", required)    
+            else if(field['id'] == 'key' || 'ckey')
+                input(type=field['type'], placeholder=field['placeholder'], pattern="^.{8,}$", title="Minimum 8 characters", class="form-control", id=field['id'], name=field['id'], autocomplete="off", required)
+            else
+                input(type=field['type'], placeholder=field['placeholder'], class="form-control", id=field['id'], name=field['id'], autocomplete="off", required)
+
+
+block container
+    .container
+        div(class="d-flex justify-content-center h-100")
+            .card
+                div(class="d-flex justify-content-center card-header-parent")
+                    .card-header
+                        h3 Remote Assistance
+                .card-body
+                    h4 Sign up
+                    h5 as
+                    form(action="/remote/createuser", id="signupForm", method="POST")
+                        .loginas
+                            div(class="btn-group btn-group-toggle", data-toggle="buttons")
+                                label(class="btn btn-outline-info")
+                                    input(type="radio", name="loginas", value="expert", checked)
+                                    |Expert
+                        - var fields = [{ "type": "text", "placeholder": "Email Address", "icon": "fas fa-user", "id": "user"}]
+                        +addInputBtn(fields)
+                        - var newfields = [{ "type": "text", "placeholder": "OTP", "icon": "fas fa-user", "id": "otp"},{"type": "password", "placeholder": "Password", "icon": "fas fa-key", "id": "key"},{"type": "password", "placeholder": "Confirm password", "icon": "fas fa-key", "id": "ckey"}];
+                        +addInput(newfields)
+                        div(class="d-flex justify-content-end")
+                            input(type="submit", name="login", value="Submit", class="btn btn-info")
+                        div(class="d-flex justify-content-center", style="margin-top: 5px; height: 20px;")
+                            span#caution(style="color: rgba(255, 94, 0, 1);") #{error} 
+                .card-footer
+                    div(class="d-flex justify-content-center links")
+                        |Do you have an account? &nbsp<a href="/remote/">Login</a>
+                    div(class="d-flex justify-content-center")
+                        |<a href="#">Forgot your password?</a>
+
+block scripts
+    script(src="javascripts/signup.js")
+
+    

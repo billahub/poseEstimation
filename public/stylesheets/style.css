@@ -1,0 +1,146 @@
+
+@font-face{
+  font-family: "Raleway-Light";
+  src: url("../webfonts/Raleway-Light.ttf");
+}
+@font-face{
+  font-family: "Raleway-Medium";
+  src: url("../webfonts/Raleway-Medium.ttf");
+}
+
+@font-face{
+  font-family: "Raleway-Regular";
+  src: url("../webfonts/Raleway-Regular.ttf");
+}
+
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: rgba(0, 0, 0, 0.678);
+}
+
+.wrapper {
+  width:100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.wait{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.wait h2{
+  color: rgba(38, 168, 168, 0.753);
+}
+
+h2{
+  font-family: "Raleway-Light";
+}
+
+.videoHead{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+}
+
+#touch{
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+
+video{
+  margin: 0;
+  padding: 0;
+  height: 80vh;
+  overflow: hidden;
+}
+
+#localCanvas{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#tempCanvas{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+}
+
+.controls{
+  position: absolute;
+  bottom: 3vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls button{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.controls a{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.toggle-on{
+  background-color: red;
+}
+
+i{
+  margin-left: 0;
+  margin-right: 0;
+  margin: auto;
+  padding: 0;
+}
